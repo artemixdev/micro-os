@@ -1,5 +1,5 @@
 # MicroOS
-![](https://github.com/artemixdev/micro-os/actions/workflows/build.yml/badge.svg)
+![](https://github.com/artemixdev/micro-os/actions/workflows/build.yml/badge.svg?branch=main)
 
 MicroOS is a micro operating system designed for use in microcontrollers.
 Its main purpose is to be minimalistic, transparent, and easy to use.
