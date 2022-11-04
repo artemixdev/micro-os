@@ -1,0 +1,9 @@
+name: build
+on: push
+jobs:
+  compile:
+    runs-on: ubuntu-22.04
+    steps:
+      - run: sudo apt install gcc-arm-none-eabi
+      - uses: actions/checkout@v3
+      - run: make
