@@ -11,7 +11,7 @@ Currently, the focus is on ARM, but other popular architectures will be covered.
 ## Main features
 - 🚀 Creating threads
 - 🔀 Switching threads
-- ⏰ Putting threads into sleep
+- ⏰ Putting threads to sleep
 - ⚙️ Synchronization primitives
 
 ## Supported architectures
@@ -20,11 +20,11 @@ Currently, the focus is on ARM, but other popular architectures will be covered.
 
 ## Some details you need to know
 The system uses `SysTick` timer for scheduling. Hence, you have to avoid using `SysTick` timer
-for your purposes. Perhaps this behavior will be changed in the future,
+for your purposes. Perhaps this behavior will be changed in the future
 but today there is no reason for this.
 
 ## Installation
-The easiest and common way is to add contents of `include` and `src` to your project.
+The easiest and most common way is to add contents of `include` and `src` to your project.
 Note that the configuration is set at compile time by defining certain symbols.
 
 ## Example with STM32F1

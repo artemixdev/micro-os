@@ -21,20 +21,20 @@ void os_run();
  * \details Receives a task to create a new thread executing this task.
  * \param task A function to execute.
  * \param argument A pointer to an argument passed to the task.
- * \return True if a new thread was created successfully.
+ * \return A new thread was created successfully.
 */
 bool os_create(void (*task)(void* argument), void* argument);
 
 /**
- * \brief Puts the thread into the sleep mode.
- * \details Switches the thread to another thread until the time interval has elapsed.
- * \param milliseconds The minimal amount of milliseconds to wait.
+ * \brief Puts current thread to sleep.
+ * \details Switches the thread to another one until the time interval has elapsed.
+ * \param milliseconds Minimum amount of milliseconds to wait.
 */
 void os_sleep(uint32_t milliseconds);
 
 /**
  * \brief Tells the system to switch to another thread.
- * \details Another thread will be executed if exists.
+ * \details Another thread will be executed if it exists.
  * Otherwise, the same thread will continue its execution.
 */
 void os_switch();
