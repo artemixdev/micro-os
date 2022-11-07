@@ -62,7 +62,7 @@ void main() {
     RCC->APB2ENR = RCC_APB2ENR_IOPBEN;
     GPIOB->CRL = GPIO_CRL_MODE1_1 | GPIO_CRL_MODE0_1;
 
-    os_initialize(&SysTick_Config);
+    os_init(&SysTick_Config);
     os_create(&blink_pb0, &argument1);
     os_create(&blink_pb1, &argument2);
     os_run();

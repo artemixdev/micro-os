@@ -8,7 +8,7 @@
  * \details Must be used only once and only outside a task (usually in main).
  * \param SysTick_Config The original SysTick_Config function.
 */
-void os_initialize(uint32_t (*SysTick_Config)(uint32_t ticks));
+void os_init(uint32_t (*SysTick_Config)(uint32_t ticks));
 
 /**
  * \brief Runs the system.

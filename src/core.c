@@ -1,6 +1,6 @@
 #include "internal.h"
 
-void os_initialize(uint32_t (*SysTick_Config)(uint32_t ticks)) {
+void os_init(uint32_t (*SysTick_Config)(uint32_t ticks)) {
     __os_kernel.threads_length = 0;
     __os_kernel.thread_index = 0;
     __os_kernel.id_counter = 0;

@@ -16,7 +16,7 @@ static inline uint32_t strex(uint32_t value, volatile uint32_t *address) {
     return result;
 }
 
-void os_mutex_initialize(os_mutex* mutex, bool exclusive) {
+void os_mutex_init(os_mutex* mutex, bool exclusive) {
     mutex->__state = 0;
     mutex->__exclusive = exclusive;
 }
@@ -67,7 +67,7 @@ void os_mutex_unlock(os_mutex* mutex) {
     }
 }
 
-void os_semaphore_initialize(os_semaphore* semaphore, uint32_t limit) {
+void os_semaphore_init(os_semaphore* semaphore, uint32_t limit) {
     semaphore->__limit = limit;
     semaphore->__counter = 0;
 }

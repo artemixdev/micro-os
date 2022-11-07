@@ -1,5 +1,9 @@
 #pragma once
 
+#define OS_VERSION_MAJOR 0
+#define OS_VERSION_MINOR 1
+#define OS_VERSION_PATCH 1
+
 #ifndef OS_MAIN_STACK_ADDRESS
     #define OS_MAIN_STACK_ADDRESS 0x20005000
 #endif
