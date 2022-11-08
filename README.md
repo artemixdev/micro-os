@@ -15,8 +15,7 @@ Currently, the focus is on ARM, but other popular architectures will be covered.
 - ⚙️ Synchronization primitives
 
 ## Supported architectures
-- ✅ ARMv7-M and above
-- ⚠️ ARMv6-M (partial support or not tested)
+- ✅ ARM Cortex-M3 and above
 
 ## Some details you need to know
 The system uses `SysTick` timer for scheduling. Hence, you have to avoid using `SysTick` timer
