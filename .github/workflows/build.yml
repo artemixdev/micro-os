@@ -1,9 +1,14 @@
 name: build
 on: push
 jobs:
-  compile:
+  build:
     runs-on: ubuntu-22.04
     steps:
       - run: sudo apt install gcc-arm-none-eabi
       - uses: actions/checkout@v3
-      - run: make
+      - run: make && make pack
+      - uses: actions/upload-artifact@v3
+        with:
+          name: micro-os
+          path: dist/*
+          retention-days: 3

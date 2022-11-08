@@ -1,5 +1,6 @@
-/.idea
-/.vscode
 .DS_Store
+/.vscode
 
-/.build
+/build
+/dist
+/temp

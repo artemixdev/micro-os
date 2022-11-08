@@ -1,16 +1,33 @@
-sources = $(shell find src -type f -name "*.c")
-objects = $(patsubst src/%.c,.build/%.o,$(sources))
-cflags = -mcpu=cortex-m3 -c -Iinclude -Wall -Wextra -Wpedantic
+sources = $(shell find source -type f -name "*.c")
+objects = $(patsubst source/%.c,build/%.o,$(sources))
+includes = -Iinclude
+warnings = -Wall -Wextra -Wpedantic
+flags = -c -Os -mcpu=cortex-m3 -mthumb $(includes) $(warnings)
 
 .SILENT:
-.PHONY: compile clean
+.PHONY: build pack clean
 
-compile: $(objects)
+build: build/libos.a
+	echo "size $(patsubst build/%,%,$<)"
+	arm-none-eabi-size -t $<
+
+pack:
+	rm -rf dist
+	mkdir -p dist/include
+	mkdir -p dist/static
+	cp -r include/os/core.h include/os/mutex.h dist/include
+	cp build/libos.a dist/static
+
+rebuild: build clean
 
 clean:
-	rm -rf .build
+	rm -rf build dist
 
-.build/%.o: src/%.c
+build/libos.a: $(objects)
+	echo "ar   $(patsubst build/%,%,$^)"
+	arm-none-eabi-ar rcs $@ $^
+
+build/%.o: source/%.c
 	mkdir -p `dirname $@`
-	echo "compile $(patsubst src/%,%,$<)"
-	arm-none-eabi-gcc $(cflags) -o $@ $<
+	echo "gcc  $(patsubst source/%,%,$<)"
+	arm-none-eabi-gcc $(flags) -o $@ $<

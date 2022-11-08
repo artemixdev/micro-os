@@ -3,38 +3,44 @@
 #include <stdbool.h>
 #include <stdint.h>
 
-/**
- * \brief Initializes the kernel.
- * \details Must be used only once and only outside a task (usually in main).
- * \param SysTick_Config The original SysTick_Config function.
-*/
-void os_init(uint32_t (*SysTick_Config)(uint32_t ticks));
+// Initializers.
+
+typedef struct {
+    uint16_t cpu_mhz;
+} os_config_t;
 
 /**
- * \brief Runs the system.
- * \details Must be used only once and only outside a task (usually in main).
+ * @brief Initializes the system.
+ * @details Must be used only once and only outside a thread (usually in main).
+*/
+void os_init(os_config_t *config);
+
+/**
+ * @brief Runs the system.
+ * @details Must be used only once and only outside a thread (usually in main).
 */
 void os_run();
 
-/**
- * \brief Creates a new thread.
- * \details Receives a task to create a new thread executing this task.
- * \param task A function to execute.
- * \param argument A pointer to an argument passed to the task.
- * \return A new thread was created successfully.
-*/
-bool os_create(void (*task)(void* argument), void* argument);
+// System calls.
 
 /**
- * \brief Puts current thread to sleep.
- * \details Switches the thread to another one until the time interval has elapsed.
- * \param milliseconds Minimum amount of milliseconds to wait.
+ * @brief Creates a new thread.
+ * @param function Thread function.
+ * @param argument Thread function argument.
+ * @param stack Thread stack size.
+ * @return A new thread was created.
 */
-void os_sleep(uint32_t milliseconds);
+bool os_create(void (*function)(void *argument), void *argument, uint32_t stack);
 
 /**
- * \brief Tells the system to switch to another thread.
- * \details Another thread will be executed if it exists.
- * Otherwise, the same thread will continue its execution.
+ * @brief Switches current thread.
+ * @details Must be used only inside a thread.
 */
 void os_switch();
+
+/**
+ * @brief Switches current thread and puts it to sleep.
+ * @details Must be used only inside a thread.
+ * @param ms Minimum sleep time in milliseconds.
+*/
+void os_delay(uint32_t ms);

@@ -1,33 +1,28 @@
+/**
+ * @brief Static configuration used at compile time.
+*/
+
 #pragma once
 
-#define OS_VERSION_MAJOR 0
-#define OS_VERSION_MINOR 1
-#define OS_VERSION_PATCH 1
-
-#ifndef OS_MAIN_STACK_ADDRESS
-    #define OS_MAIN_STACK_ADDRESS 0x20005000
-#endif
-
-#ifndef OS_MAIN_STACK_SIZE
-    #define OS_MAIN_STACK_SIZE 1024
-#endif
-
-#ifndef OS_THREAD_STACK_SIZE
-    #define OS_THREAD_STACK_SIZE 256
+#ifdef OS_OPTION_LIBOPENCM3
+#define OS_LIBOPENCM3
 #endif
 
 #ifndef OS_THREADS_MAX
-    #define OS_THREADS_MAX 10
+#define OS_THREADS_MAX 16
 #endif
 
-#if defined(F_CPU) && !defined(OS_CPU_FREQUENCY)
-    #define OS_CPU_FREQUENCY F_CPU
+// must be a multiple of 8
+#ifndef OS_MAIN_STACK_SIZE
+#define OS_MAIN_STACK_SIZE 1024
 #endif
 
-#ifndef OS_CPU_FREQUENCY
-    #define OS_CPU_FREQUENCY 8000000
+// must be a multiple of 8
+#ifndef OS_THREAD_STACK_SIZE_MIN
+#define OS_THREAD_STACK_SIZE_MIN 128
 #endif
 
-#ifndef OS_SYSTICK_INTERVAL
-    #define OS_SYSTICK_INTERVAL 1 // milliseconds
+// milliseconds
+#ifndef OS_TICK_INTERVAL
+#define OS_TICK_INTERVAL 1
 #endif
