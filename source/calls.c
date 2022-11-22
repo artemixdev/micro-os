@@ -2,10 +2,8 @@
 #include <stdint.h>
 #include "compiler.h"
 
-NAKED bool os_create(void (*function)(void *argument), void *argument, uint32_t stack) {
-    USED(function);
-    USED(argument);
-    USED(stack);
+NAKED bool os_create(UNUSED void (*function)(void *),
+    UNUSED void *argument, UNUSED uint32_t stack) {
 
     asm volatile (
         "svc #2 \n"

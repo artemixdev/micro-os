@@ -36,4 +36,7 @@ typedef struct {
 
 extern uint8_t _estack, _ebss;
 
-#define kernel ((kernel_t *)((uint32_t)&_estack + 1 - sizeof(kernel_t)))
+#define KERNEL_ADDRESS (((uint32_t)&_estack) + 1 - sizeof(kernel_t))
+#define MAIN_STACK_ADDRESS ((KERNEL_ADDRESS - 1) & 0xFFFFFFF8)
+
+#define kernel ((kernel_t *)KERNEL_ADDRESS)

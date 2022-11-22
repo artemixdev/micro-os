@@ -4,10 +4,6 @@
 
 #pragma once
 
-#ifdef OS_OPTION_LIBOPENCM3
-#define OS_LIBOPENCM3
-#endif
-
 #ifndef OS_THREADS_MAX
 #define OS_THREADS_MAX 16
 #endif
